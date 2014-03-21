@@ -10,3 +10,8 @@ build/
 */.dep
 */.lib
 
+#Internal dev
+Nanpy/arduino.mk
+Nanpy/Makefile
+Nanpy/libraries
+
