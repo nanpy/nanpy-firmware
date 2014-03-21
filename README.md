@@ -6,7 +6,6 @@ Read more on Nanpy at https://github.com/nanpy
 
 How to configure
 ----------------
-### Configure your Nanpy firmware
 
 	$ cd firmware
 	$ ./configure.sh
