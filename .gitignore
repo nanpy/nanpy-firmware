@@ -1,0 +1,12 @@
+#General
+.DS_Store
+*~
+*.swp
+build/
+
+#Arduino
+*.o
+*.hex
+*/.dep
+*/.lib
+
