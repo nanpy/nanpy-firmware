@@ -21,3 +21,6 @@
 #define USE_DallasTemperature                       0
 #define USE_CapacitiveSensor                        0
 #define USE_DHT                                     0
+
+// https://bitbucket.org/fmalpartida/new-liquidcrystal
+#define USE_LiquidCrystal_I2C                       0
