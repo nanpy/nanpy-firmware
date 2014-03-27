@@ -14,6 +14,7 @@
 #define USE_Register                                1
 #define USE_Info                                    1
 #define USE_Counter                                 0
+#define USE_Wire                                    1
 
 // external libraries should be installed for the following features:
 #define USE_OneWire                                 0

@@ -38,6 +38,9 @@
 #include <DHT.h>
 #endif
 
+#if USE_Wire
+#include <Wire.h>
+#endif
 #include "BaseClass.h"
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
@@ -59,6 +62,7 @@
 #include "RegisterClass.h"
 #include "CounterClass.h"
 #include "InfoClass.h"
+#include "WireClass.h"
 
 using namespace nanpy;
 
@@ -86,6 +90,7 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(CounterClass, USE_Counter);                          // 
     REGISTER_CLASS_CONDITIONAL(InfoClass, USE_Info);                          // 
     REGISTER_CLASS_CONDITIONAL(DHTClass, USE_DHT);
+    REGISTER_CLASS_CONDITIONAL(WireClass, USE_Wire);
 
     ComChannel::connect();
 }
