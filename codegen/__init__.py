@@ -114,7 +114,7 @@ class Codegen(object):
 
 
 def main():
-    firmware_path = path(__file__).abspath().parent.parent / 'firmware'
+    firmware_path = path(__file__).abspath().parent.parent
     nanpy_path = path(__file__).abspath().parent.parent / 'nanpy'
     avr_include_path = path('/usr/lib/avr/include/avr/')
 
