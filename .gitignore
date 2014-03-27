@@ -15,3 +15,10 @@ Nanpy/arduino.mk
 Nanpy/Makefile
 Nanpy/libraries
 
+#Python
+*.pyc
+
+# ignore all hidden files...
+.*
+#                        ...except:
+!.gitignore
