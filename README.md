@@ -1,5 +1,5 @@
-Nanpy firmware
-==============
+Nanpy firmware v0.9
+===================
 Firmware for Nanpy, a library to use your Arduino board with Python.
 
 Read more on Nanpy at https://github.com/nanpy
