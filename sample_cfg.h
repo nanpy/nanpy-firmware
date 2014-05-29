@@ -20,6 +20,8 @@
 #define USE_OneWire                                 0
 #define USE_DallasTemperature                       0
 #define USE_CapacitiveSensor                        0
+
+// https://github.com/adafruit/DHT-sensor-library
 #define USE_DHT                                     0
 
 // https://bitbucket.org/fmalpartida/new-liquidcrystal

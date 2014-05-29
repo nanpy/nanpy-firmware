@@ -10,6 +10,9 @@ build/
 */.dep
 */.lib
 
+#Configuration
+Nanpy/cfg.h
+
 #Internal dev
 Nanpy/arduino.mk
 Nanpy/Makefile
