@@ -12,6 +12,7 @@ build/
 
 #Configuration
 Nanpy/cfg.h
+makefile/
 
 #Internal dev
 Nanpy/arduino.mk
