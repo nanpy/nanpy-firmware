@@ -16,13 +16,22 @@ const char* nanpy::DallasTemperatureClass::get_firmware_id()
 void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<DallasTemperature>::elaborate(m);
 
-        if (strcmp(m->getName(),"new") == 0) {       
+        if (strcmp(m->getName(),"new") == 0) {
             int prm = 0;
             OneWire* wr = new OneWire(m->getInt(0));
             DallasTemperature* dt = new DallasTemperature(&(*wr));
             v.insert(dt);
             dt->begin();
             m->returns(v.getLastIndex());
+        }
+
+        if (strcmp(m->getName(), "setResolution") == 0) {
+            v[m->getObjectId()]->setResolution(m->getInt(0));
+            m->returns(0);
+        }
+
+        if (strcmp(m->getName(), "getResolution") == 0) {
+            m->returns(v[m->getObjectId()]->getResolution());
         }
 
         if (strcmp(m->getName(), "requestTemperatures") == 0) {
@@ -66,7 +75,7 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "getAddress") == 0) {
             byte addr[8];
-            String addr_hex = String(); 
+            String addr_hex = String();
             if(!v[m->getObjectId()]->getAddress(addr, m->getInt(0))) {
                 m->returns(1);
                 return;
