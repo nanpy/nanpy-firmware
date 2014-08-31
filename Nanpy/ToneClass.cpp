@@ -20,7 +20,7 @@ void nanpy::ToneClass::elaborate( nanpy::MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "play") == 0) {
-            v[m->getObjectId()]->play(m->getInt(0), m->getInt(0));
+            v[m->getObjectId()]->play(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
 
