@@ -3,20 +3,20 @@
 
 char* readLineFromSerial()
 {
-    char* buffer = (char*)malloc(30);
+    char* buff = (char*)malloc(nanpy::ComChannel::MAX_BUFFER_SIZE);
     int i=0;
     char ch = '0';
     do {
         ch = Serial.read();
-        if(ch != '\0' && ch < 255 && ch >= 0) {
-            buffer[i++] = ch;
+        if(ch < 255 && ch >= 0) {
+            buff[i++] = ch;
+        }
+        if (i == nanpy::ComChannel::MAX_BUFFER_SIZE - 1) {
+            buff[i] = '\0';
+            break;
         }
     } while(ch != '\0');
-    char* buffer2 = (char*)malloc(i + 1);
-    buffer[i] = '\0';
-    strcpy(buffer2, buffer);
-    free(buffer);
-    return buffer2;
+    return buff;
 };
 
 bool nanpy::ComChannel::available() {

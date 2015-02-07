@@ -9,6 +9,7 @@ namespace nanpy {
     class ComChannel {
 
         public:
+            static const unsigned int MAX_BUFFER_SIZE = 100;
             static bool available();
             static void connect();
             static void println(String& val);
