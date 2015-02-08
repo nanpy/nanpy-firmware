@@ -1,11 +1,12 @@
 #include "ComChannel.h"
 #include <Arduino.h>
 
-char* readLineFromSerial()
-{
-    char* buff = (char*)malloc(nanpy::ComChannel::MAX_BUFFER_SIZE);
+char nanpy::ComChannel::readBuffer[nanpy::ComChannel::MAX_BUFFER_SIZE] = {0};
+
+void readLineFromSerial(char* extbuff) {
     int i=0;
     char ch = '0';
+    char* buff = nanpy::ComChannel::readBuffer;
     do {
         ch = Serial.read();
         if(ch < 255 && ch >= 0) {
@@ -16,7 +17,7 @@ char* readLineFromSerial()
             break;
         }
     } while(ch != '\0');
-    return buff;
+    strcpy(extbuff, buff);
 };
 
 bool nanpy::ComChannel::available() {
@@ -62,7 +63,7 @@ void nanpy::ComChannel::println(unsigned long val) {
     Serial.println(val);
 }
 
-char* nanpy::ComChannel::readLine() {
-    return readLineFromSerial();
+void nanpy::ComChannel::readLine(char* extbuff) {
+    readLineFromSerial(extbuff);
 }
 

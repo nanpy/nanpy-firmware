@@ -7,9 +7,9 @@ namespace nanpy {
     class MethodDescriptor {
 
         private:
-            char *name;
+            char name[50];
             int objid;
-            char* classname;
+            char classname[50];
             int n_args;
             char **stack;
 

@@ -6,26 +6,24 @@
 
 nanpy::MethodDescriptor::MethodDescriptor() {
 
-    this->classname = ComChannel::readLine();
+    char buff[50];
 
-    char* buff;
+    ComChannel::readLine(this->classname);
 
-    buff = ComChannel::readLine();
+    ComChannel::readLine(buff);
     this->objid = atoi(buff);
-    free(buff);
 
-    buff = ComChannel::readLine();
+    ComChannel::readLine(buff);
     this->n_args = atoi(buff);
-    free(buff);
 
-    this->name = ComChannel::readLine();
+    ComChannel::readLine(this->name);
 
     this->stack = (char**)malloc(sizeof(char*) * this->n_args);
 
     for(int n = 0; n < this->n_args; n++) {
-        this->stack[n] = ComChannel::readLine();
+        this->stack[n] = (char*)malloc(sizeof(char) * 50);
+        ComChannel::readLine(this->stack[n]);
     }
-
 };
 
 int nanpy::MethodDescriptor::getNArgs() {
@@ -33,7 +31,7 @@ int nanpy::MethodDescriptor::getNArgs() {
 };
 
 bool nanpy::MethodDescriptor::getBool(int n) {
-  return strcmp(this->stack[n], "True") == 0 ? true : false;
+    return strcmp(this->stack[n], "True") == 0 ? true : false;
 };
 
 int nanpy::MethodDescriptor::getInt(int n) {
@@ -97,12 +95,8 @@ void nanpy::MethodDescriptor::returns(unsigned long val) {
 }
 
 nanpy::MethodDescriptor::~MethodDescriptor() {
-    delete(name);
-    delete(classname);
-
     for(int n = 0; n < this->n_args; n++) {
         delete(this->stack[n]);
     }
-
     delete(this->stack);
 }
