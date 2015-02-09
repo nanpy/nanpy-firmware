@@ -4,6 +4,9 @@
 #include "ComChannel.h"
 #include <Arduino.h>
 
+char** nanpy::MethodDescriptor::stack_pool = 0;
+int nanpy::MethodDescriptor::stack_pool_size = 3;
+
 nanpy::MethodDescriptor::MethodDescriptor() {
 
     char buff[50];
@@ -18,10 +21,27 @@ nanpy::MethodDescriptor::MethodDescriptor() {
 
     ComChannel::readLine(this->name);
 
-    this->stack = (char**)malloc(sizeof(char*) * this->n_args);
+    if (this->n_args > nanpy::MethodDescriptor::stack_pool_size) {
+        if(nanpy::MethodDescriptor::stack_pool != 0) {
+            for(int n = 0; n < nanpy::MethodDescriptor::stack_pool_size; n++) {
+                delete(nanpy::MethodDescriptor::stack_pool[n]);
+            }
+            delete(nanpy::MethodDescriptor::stack_pool);
+        }
+        nanpy::MethodDescriptor::stack_pool = 0;
+        nanpy::MethodDescriptor::stack_pool_size = this->n_args;
+    }
+
+    if (nanpy::MethodDescriptor::stack_pool == 0) {
+        nanpy::MethodDescriptor::stack_pool = (char**)malloc(sizeof(char*) * nanpy::MethodDescriptor::stack_pool_size);
+        for(int i = 0; i < nanpy::MethodDescriptor::stack_pool_size; i++) {
+            nanpy::MethodDescriptor::stack_pool[i] = (char*)malloc(sizeof(char) * 50);
+        }
+    }
+
+    this->stack = nanpy::MethodDescriptor::stack_pool;
 
     for(int n = 0; n < this->n_args; n++) {
-        this->stack[n] = (char*)malloc(sizeof(char) * 50);
         ComChannel::readLine(this->stack[n]);
     }
 };
@@ -94,9 +114,3 @@ void nanpy::MethodDescriptor::returns(unsigned long val) {
     ComChannel::println(val);
 }
 
-nanpy::MethodDescriptor::~MethodDescriptor() {
-    for(int n = 0; n < this->n_args; n++) {
-        delete(this->stack[n]);
-    }
-    delete(this->stack);
-}

@@ -12,6 +12,8 @@ namespace nanpy {
             char classname[50];
             int n_args;
             char **stack;
+            static char **stack_pool;
+            static int stack_pool_size;
 
         public:
             MethodDescriptor();
@@ -32,7 +34,6 @@ namespace nanpy {
             void returns(double val);
             void returns(long val);
             void returns(unsigned long val);
-            ~MethodDescriptor();
 
     };
 }
