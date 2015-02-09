@@ -3,13 +3,14 @@
 #include <math.h>
 #include "ComChannel.h"
 #include <Arduino.h>
+#include "consts.h"
 
 char** nanpy::MethodDescriptor::stack_pool = 0;
 int nanpy::MethodDescriptor::stack_pool_size = 3;
 
 nanpy::MethodDescriptor::MethodDescriptor() {
 
-    char buff[50];
+    char buff[MAX_READ_BUFFER_SIZE];
 
     ComChannel::readLine(this->classname);
 
@@ -35,7 +36,7 @@ nanpy::MethodDescriptor::MethodDescriptor() {
     if (nanpy::MethodDescriptor::stack_pool == 0) {
         nanpy::MethodDescriptor::stack_pool = (char**)malloc(sizeof(char*) * nanpy::MethodDescriptor::stack_pool_size);
         for(int i = 0; i < nanpy::MethodDescriptor::stack_pool_size; i++) {
-            nanpy::MethodDescriptor::stack_pool[i] = (char*)malloc(sizeof(char) * 50);
+            nanpy::MethodDescriptor::stack_pool[i] = (char*)malloc(sizeof(char) * MAX_READ_BUFFER_SIZE);
         }
     }
 
