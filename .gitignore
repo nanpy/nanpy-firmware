@@ -25,4 +25,5 @@ Nanpy/libraries
 # ignore all hidden files...
 .*
 #                        ...except:
-!.gitignore
+!.git*
+!.travis*
