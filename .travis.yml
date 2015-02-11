@@ -3,8 +3,6 @@ language: c
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -y binutils-avr gcc-avr scons python-pip arduino 
- - wget http://ftp.us.debian.org/debian/pool/main/a/arduino/arduino-core_1.0.5+dfsg2-4_all.deb
- - sudo dpkg -i arduino-core_1.0.5+dfsg2-4_all.deb
  - sudo rm -f /usr/share/arduino/libraries/Robot_Control/Wire.h
  - sudo pip install https://github.com/ponty/confduino/archive/master.zip
  - sudo pip install pyavrutils
