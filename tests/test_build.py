@@ -11,7 +11,7 @@ ino = root / 'Nanpy' / 'Nanpy.ino'
 cfg = root / 'Nanpy' / 'cfg.h'
 
 '''
-sudo rm /usr/share/arduino/libraries/Robot_Control/Wire.h
+sudo rm -f /usr/share/arduino/libraries/Robot_Control/Wire.h
 '''
 
 EXTERNAL_LIBS = [
