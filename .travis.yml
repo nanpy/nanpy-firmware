@@ -3,7 +3,6 @@ language: c
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -y binutils-avr gcc-avr scons arduino
- - sudo rm /usr/share/arduino/libraries/Robot_Control/Wire.h
  - sudo pip install confduino
  - sudo pip install pyavrutils
  - sudo pip install path.py
