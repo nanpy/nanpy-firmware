@@ -69,7 +69,7 @@ class TestFoo(object):
             
             (root / 'Nanpy').copytree(tdir/ 'Nanpy')
             ino = tdir / 'Nanpy' / 'Nanpy.ino'
-            cfg = root / 'Nanpy' / 'cfg.h'
+            cfg = tdir / 'Nanpy' / 'cfg.h'
     
             cfg.write_text(scfg)
             
