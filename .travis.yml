@@ -6,6 +6,7 @@ before_install:
  - sudo pip install confduino
  - sudo pip install pyavrutils
  - sudo pip install path.py
+ - sudo pip install nose
 
 install: 
 
