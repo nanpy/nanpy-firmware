@@ -1,21 +1,20 @@
-Nanpy firmware v0.9.2
-=====================
-Firmware for Nanpy, a library to use your Arduino board with Python.
+# Nanpy firmware v0.9.2
 
-Read more on Nanpy at https://github.com/nanpy
+[![Travis](http://img.shields.io/travis/nanpy/nanpy-firmware.svg)] (https://travis-ci.org/nanpy/nanpy-firmware)
 
-How to configure
-----------------
+Firmware for Nanpy, a library to use your Arduino board with Python. Read more on Nanpy at https://github.com/nanpy
+
+## How to configure
 
 	$ cd firmware
 	$ ./configure.sh
 
 You can use Nanpy/cfg.h generated file to configure your Nanpy firmware, selecting the features you want to include and the baud rate.
 
-How to build and install
-------------------------
+## How to build and install
+
 Copy Nanpy directory under your "sketchbook" directory, start your Arduino IDE, open Sketchbook/Nanpy, select "Upload".
 
-License
--------
+## License
+
 This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
