@@ -1,14 +1,13 @@
 from nose.tools import eq_, ok_
 from path import path
-# from pyavrutils import support, arduino
 from pyavrutils.arduino import Arduino, ArduinoCompileError
 from pyavrutils.support import simple_targets
 import logging
+from nose_ittr import IttrMultiplier, ittr
+import tempfile
 
 root = path(__file__).parent.parent
 sample_cfg = root / 'sample_cfg.h'
-ino = root / 'Nanpy' / 'Nanpy.ino'
-cfg = root / 'Nanpy' / 'cfg.h'
 
 '''
 sudo rm -f /usr/share/arduino/libraries/Robot_Control/Wire.h
@@ -22,15 +21,19 @@ EXTERNAL_LIBS = [
                'USE_DHT',
                ]
 
-MCUs=[
+MCUs = [
 #      'atmega8', 
 #      'atmega48', 
-     'atmega168', 
-     'atmega328p', 
+     'atmega168',
+     'atmega328p',
 #      'atmega640', 
-     'atmega1280', 
+     'atmega1280',
      'atmega2560'
      ]
+
+def tmpdir(dir=None, suffix=''):
+    x = tempfile.mkdtemp(suffix=suffix, prefix='nanpy_', dir=dir)
+    return path(x)
 
 def get_features():
     ls = []
@@ -46,32 +49,33 @@ def get_features():
     print 'get_features:', ls
     return ls
 
-def check_build(ino, mcu):
-    cc = Arduino(mcu=mcu)
-    print cc.mcu, ino
-    cc.build(ino)
-    ok_( cc.size().ok )
-    
-    
+FEATURES = [f for f in get_features() if f not in EXTERNAL_LIBS]
 
 def test_config():
-    known_mcus=[t.mcu for t in simple_targets()]
+    known_mcus = [t.mcu for t in simple_targets()]
     for mcu in MCUs:
-        assert mcu in known_mcus, 'MCU %s was not found in config %s'% (mcu, known_mcus)
-    
-def test_build():
-    print 'available MCUs:', [t.mcu for t in simple_targets()]
-    for mcu in MCUs:
-        print '++++++++++++++++++++++ MCU:', mcu
-        for f in get_features():
-            if f not in EXTERNAL_LIBS:
-                scfg = sample_cfg.text()
-#                 scfg=sample_cfg.text().replace(f, '%s 1 \n//' % f)
-                scfg+='\n#define %s 1 \n' % f
-    #             scfg='#define %s 1' % f
-                print '*********** feature:', f
-#                 print 'cfg.h:', scfg
+        assert mcu in known_mcus, 'MCU %s was not found in config %s' % (mcu, known_mcus)
 
-                cfg.write_text(scfg)
-                check_build(ino, mcu)
-#     assert 0
+class TestFoo(object):
+    __metaclass__ = IttrMultiplier
+        
+    @ittr(mcu=MCUs, feature=FEATURES)
+    def test_build(self):
+        tdir = tmpdir()
+        try:
+            f = self.feature
+            scfg = sample_cfg.text()
+            scfg += '\n#define %s 1 \n' % f
+            
+            (root / 'Nanpy').copytree(tdir/ 'Nanpy')
+            ino = tdir / 'Nanpy' / 'Nanpy.ino'
+            cfg = root / 'Nanpy' / 'cfg.h'
+    
+            cfg.write_text(scfg)
+            
+            cc = Arduino(mcu=self.mcu)
+            print cc.mcu, ino
+            cc.build(ino)
+            ok_(cc.size().ok)
+        finally:
+            tdir.rmtree()
