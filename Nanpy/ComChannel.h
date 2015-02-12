@@ -2,6 +2,7 @@
 #define COM_CHANNEL
 
 #include "cfg.h"
+#include "consts.h"
 
 #include <Arduino.h>
 
@@ -9,7 +10,7 @@ namespace nanpy {
     class ComChannel {
 
         public:
-            static const unsigned int MAX_BUFFER_SIZE = 100;
+            static char read_buffer[MAX_READ_BUFFER_SIZE];
             static bool available();
             static void connect();
             static void println(String& val);
@@ -20,7 +21,7 @@ namespace nanpy {
             static void println(double val);
             static void println(long val);
             static void println(unsigned long val);
-            static char* readLine();
+            static void readLine(char* extbuff);
     };
 }
 

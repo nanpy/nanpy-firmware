@@ -7,7 +7,7 @@
 
 void nanpy::ToneWrapper::play(int note, int duration) {
     #if defined(__AVR__)
-        tone(pin, note, duration);
+        tone(pin, note);
     #endif
 }
 

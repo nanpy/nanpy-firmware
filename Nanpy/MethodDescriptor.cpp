@@ -3,29 +3,48 @@
 #include <math.h>
 #include "ComChannel.h"
 #include <Arduino.h>
+#include "consts.h"
+
+char** nanpy::MethodDescriptor::stack_pool = 0;
+int nanpy::MethodDescriptor::stack_pool_size = 3;
 
 nanpy::MethodDescriptor::MethodDescriptor() {
 
-    this->classname = ComChannel::readLine();
+    char buff[MAX_READ_BUFFER_SIZE];
 
-    char* buff;
+    ComChannel::readLine(this->classname);
 
-    buff = ComChannel::readLine();
+    ComChannel::readLine(buff);
     this->objid = atoi(buff);
-    free(buff);
 
-    buff = ComChannel::readLine();
+    ComChannel::readLine(buff);
     this->n_args = atoi(buff);
-    free(buff);
 
-    this->name = ComChannel::readLine();
+    ComChannel::readLine(this->name);
 
-    this->stack = (char**)malloc(sizeof(char*) * this->n_args);
-
-    for(int n = 0; n < this->n_args; n++) {
-        this->stack[n] = ComChannel::readLine();
+    if (this->n_args > nanpy::MethodDescriptor::stack_pool_size) {
+        if(nanpy::MethodDescriptor::stack_pool != 0) {
+            for(int n = 0; n < nanpy::MethodDescriptor::stack_pool_size; n++) {
+                delete(nanpy::MethodDescriptor::stack_pool[n]);
+            }
+            delete(nanpy::MethodDescriptor::stack_pool);
+        }
+        nanpy::MethodDescriptor::stack_pool = 0;
+        nanpy::MethodDescriptor::stack_pool_size = this->n_args;
     }
 
+    if (nanpy::MethodDescriptor::stack_pool == 0) {
+        nanpy::MethodDescriptor::stack_pool = (char**)malloc(sizeof(char*) * nanpy::MethodDescriptor::stack_pool_size);
+        for(int i = 0; i < nanpy::MethodDescriptor::stack_pool_size; i++) {
+            nanpy::MethodDescriptor::stack_pool[i] = (char*)malloc(sizeof(char) * MAX_READ_BUFFER_SIZE);
+        }
+    }
+
+    this->stack = nanpy::MethodDescriptor::stack_pool;
+
+    for(int n = 0; n < this->n_args; n++) {
+        ComChannel::readLine(this->stack[n]);
+    }
 };
 
 int nanpy::MethodDescriptor::getNArgs() {
@@ -33,7 +52,7 @@ int nanpy::MethodDescriptor::getNArgs() {
 };
 
 bool nanpy::MethodDescriptor::getBool(int n) {
-  return strcmp(this->stack[n], "True") == 0 ? true : false;
+    return strcmp(this->stack[n], "True") == 0 ? true : false;
 };
 
 int nanpy::MethodDescriptor::getInt(int n) {
@@ -96,13 +115,3 @@ void nanpy::MethodDescriptor::returns(unsigned long val) {
     ComChannel::println(val);
 }
 
-nanpy::MethodDescriptor::~MethodDescriptor() {
-    delete(name);
-    delete(classname);
-
-    for(int n = 0; n < this->n_args; n++) {
-        delete(this->stack[n]);
-    }
-
-    delete(this->stack);
-}
