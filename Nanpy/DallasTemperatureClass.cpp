@@ -86,14 +86,6 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
             m->returns(addr_hex);
         }
 
-        if (strcmp(m->getName(), "toFahrenheit") == 0) {
-            m->returns(DallasTemperature::toFahrenheit(m->getFloat(0)));
-        }
-
-        if (strcmp(m->getName(), "toCelsius") == 0) {
-            m->returns(DallasTemperature::toCelsius(m->getFloat(0)));
-        }
-
         if (strcmp(m->getName(), "getDeviceCount") == 0) {
             m->returns(v[m->getObjectId()]->getDeviceCount());
         }
