@@ -17,4 +17,4 @@ Copy Nanpy directory under your "sketchbook" directory, start your Arduino IDE, 
 
 ## License
 
-This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
+This software is released under MIT License. Copyright (c) 2012-2015 Andrea Stagi <stagi.andrea@gmail.com>
