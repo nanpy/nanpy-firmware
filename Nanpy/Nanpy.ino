@@ -1,10 +1,7 @@
 #include "cfg.h"
+#include "cfg_defaults.h"
+#include "cfg_check.h"
 
-#if USE_Tone
-# if USE_Counter
-#  error "USE_Tone conflicts with USE_Counter!"
-# endif
-#endif
 
 #if USE_EEPROM
 #include <EEPROM.h>
