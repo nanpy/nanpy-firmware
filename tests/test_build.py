@@ -14,26 +14,28 @@ sudo rm -f /usr/share/arduino/libraries/Robot_Control/Wire.h
 '''
 
 EXTERNAL_LIBS = [
-               'USE_LiquidCrystal_I2C',
-               'USE_OneWire',
-               'USE_DallasTemperature',
-               'USE_CapacitiveSensor',
-               'USE_DHT',
-               ]
+    'USE_LiquidCrystal_I2C',
+    'USE_OneWire',
+    'USE_DallasTemperature',
+    'USE_CapacitiveSensor',
+    'USE_DHT',
+]
 
 MCUs = [
-#      'atmega8', 
-#      'atmega48', 
-     'atmega168',
-     'atmega328p',
-#      'atmega640', 
-     'atmega1280',
-     'atmega2560'
-     ]
+    #      'atmega8',
+    #      'atmega48',
+    'atmega168',
+    'atmega328p',
+    #      'atmega640',
+    'atmega1280',
+    'atmega2560'
+]
+
 
 def tmpdir(dir=None, suffix=''):
     x = tempfile.mkdtemp(suffix=suffix, prefix='nanpy_', dir=dir)
     return path(x)
+
 
 def get_features():
     ls = []
@@ -51,28 +53,35 @@ def get_features():
 
 FEATURES = [f for f in get_features() if f not in EXTERNAL_LIBS]
 
+ZERO_CFG = '\n'.join(['#define %s 0' % x for x in FEATURES])
+
+
 def test_config():
     known_mcus = [t.mcu for t in simple_targets()]
     for mcu in MCUs:
-        assert mcu in known_mcus, 'MCU %s was not found in config %s' % (mcu, known_mcus)
+        assert mcu in known_mcus, 'MCU %s was not found in config %s' % (
+            mcu, known_mcus)
+
 
 class TestFoo(object):
     __metaclass__ = IttrMultiplier
-        
+
     @ittr(mcu=MCUs, feature=FEATURES)
     def test_build(self):
         tdir = tmpdir()
         try:
+
             f = self.feature
-            scfg = sample_cfg.text()
-            scfg += '\n#define %s 1 \n' % f
-            
-            (root / 'Nanpy').copytree(tdir/ 'Nanpy')
+#             scfg = sample_cfg.text()
+# scfg += '\n#define %s 1 \n' % f
+            scfg = ZERO_CFG + '\n' + '#define %s 1' + '\n' % f
+
+            (root / 'Nanpy').copytree(tdir / 'Nanpy')
             ino = tdir / 'Nanpy' / 'Nanpy.ino'
             cfg = tdir / 'Nanpy' / 'cfg.h'
-    
+
             cfg.write_text(scfg)
-            
+
             cc = Arduino(mcu=self.mcu)
             print cc.mcu, ino
             cc.build(ino)
