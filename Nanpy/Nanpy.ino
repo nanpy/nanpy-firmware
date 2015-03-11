@@ -1,6 +1,4 @@
-#include "cfg.h"
-#include "cfg_defaults.h"
-#include "cfg_check.h"
+#include "cfg_all.h"
 
 
 #if USE_EEPROM

@@ -1,7 +1,7 @@
 #ifndef COM_CHANNEL
 #define COM_CHANNEL
 
-#include "cfg.h"
+#include "cfg_all.h"
 #include "consts.h"
 
 #include <Arduino.h>

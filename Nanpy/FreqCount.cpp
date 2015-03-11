@@ -26,7 +26,7 @@
 
 // FreqCount Library was so modified that it can be included in Nanpy
 
-#include "cfg.h"
+#include "cfg_all.h"
 #if USE_Counter
 
 #include "FreqCount.h"

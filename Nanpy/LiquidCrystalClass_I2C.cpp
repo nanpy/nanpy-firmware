@@ -1,4 +1,4 @@
-#include "cfg.h"
+#include "cfg_all.h"
 
 #if USE_LiquidCrystal_I2C
 
