@@ -2,19 +2,41 @@
 
 #define BAUDRATE 115200
 
-#define USE_Servo                                   0
-#define USE_Tone                                    0
-#define USE_LiquidCrystal                           0
-#define USE_Stepper                                 0
-#define USE_EEPROM                                  0
-#define USE_RAM                                     0
-#define USE_Define                                  0
-#define USE_ArduinoCore                             0
-#define USE_Watchdog                                0
+// info about existence of other features
+#define USE_Info                                    1
+
+// definitions: MCU type, frequency, Arduino version, 
+// EEPROM size, RAM size, pin count, build time,..
+#define USE_Define                                  1
+
+// low level mapping of pins and ports
+#define USE_ArduinoCore                             1
+
+// read, write RAM
+#define USE_RAM                                     1
+
+// read, write EEPROM
+#define USE_EEPROM                                  1
+
+// read, write AVR registers
 #define USE_Register                                0
-#define USE_Info                                    0
-#define USE_Counter                                 0
+
+// watchdog and reset
+#define USE_Watchdog                                0
+
+#define USE_Tone                                    0
+
+#define USE_LiquidCrystal                           0
+
+// I2C
 #define USE_Wire                                    0
+
+#define USE_Servo                                   0
+
+#define USE_Stepper                                 0
+
+// frequency counter,  USE_Tone should be off!
+#define USE_Counter                                 0
 
 // external libraries should be installed for the following features:
 #define USE_OneWire                                 0
