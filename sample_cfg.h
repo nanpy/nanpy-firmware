@@ -48,3 +48,5 @@
 
 // https://bitbucket.org/fmalpartida/new-liquidcrystal
 #define USE_LiquidCrystal_I2C                       0
+
+#define USE_TLC5947                                 1
