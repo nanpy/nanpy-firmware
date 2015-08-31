@@ -80,3 +80,6 @@
 #  define USE_LiquidCrystal_I2C 0
 #endif
 
+#ifndef USE_TLC5947
+#  define USE_TLC5947 0
+#endif

@@ -19,6 +19,7 @@ EXTERNAL_LIBS = [
     'USE_DallasTemperature',
     'USE_CapacitiveSensor',
     'USE_DHT',
+    'USE_TLC5947'
 ]
 
 MCUs = [
@@ -73,7 +74,7 @@ class TestFoo(object):
 
             f = self.feature
             scfg = ZERO_CFG + '''
-            #undef %s  
+            #undef %s
             #define %s  1
             ''' % (f, f)
 

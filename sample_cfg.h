@@ -5,7 +5,7 @@
 // info about existence of other features
 #define USE_Info                                    1
 
-// definitions: MCU type, frequency, Arduino version, 
+// definitions: MCU type, frequency, Arduino version,
 // EEPROM size, RAM size, pin count, build time,..
 #define USE_Define                                  1
 
@@ -49,4 +49,4 @@
 // https://bitbucket.org/fmalpartida/new-liquidcrystal
 #define USE_LiquidCrystal_I2C                       0
 
-#define USE_TLC5947                                 1
+#define USE_TLC5947                                 0
