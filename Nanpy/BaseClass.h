@@ -1,7 +1,7 @@
 #ifndef BASE_CLASS
 #define BASE_CLASS
 
-#include "cfg.h"
+#include "cfg_all.h"
 #include "SlimArray.h"
 #include "MethodDescriptor.h"
 

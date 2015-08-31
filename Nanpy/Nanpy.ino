@@ -1,10 +1,5 @@
-#include "cfg.h"
+#include "cfg_all.h"
 
-#if USE_Tone
-# if USE_Counter
-#  error "USE_Tone conflicts with USE_Counter!"
-# endif
-#endif
 
 #if USE_EEPROM
 #include <EEPROM.h>
@@ -46,6 +41,10 @@
 #include <Wire.h>
 #endif
 
+#if USE_TLC5947
+#include <Adafruit_TLC5947.h>
+#endif
+
 #include "BaseClass.h"
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
@@ -69,6 +68,8 @@
 #include "CounterClass.h"
 #include "InfoClass.h"
 #include "WireClass.h"
+
+#include "TLC5947Class.h"
 
 using namespace nanpy;
 
@@ -98,6 +99,8 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(InfoClass, USE_Info);                          // 
     REGISTER_CLASS_CONDITIONAL(DHTClass, USE_DHT);
     REGISTER_CLASS_CONDITIONAL(WireClass, USE_Wire);
+    
+    REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
 
     ComChannel::connect();
 }

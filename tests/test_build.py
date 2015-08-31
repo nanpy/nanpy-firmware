@@ -72,9 +72,10 @@ class TestFoo(object):
         try:
 
             f = self.feature
-#             scfg = sample_cfg.text()
-# scfg += '\n#define %s 1 \n' % f
-            scfg = ZERO_CFG + '\n' + '#define %s 1' + '\n' % f
+            scfg = ZERO_CFG + '''
+            #undef %s  
+            #define %s  1
+            ''' % (f, f)
 
             (root / 'Nanpy').copytree(tdir / 'Nanpy')
             ino = tdir / 'Nanpy' / 'Nanpy.ino'
