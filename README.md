@@ -1,4 +1,4 @@
-# Nanpy firmware v0.9.3
+# Nanpy firmware v0.9.5
 
 [![Travis](http://img.shields.io/travis/nanpy/nanpy-firmware.svg)] (https://travis-ci.org/nanpy/nanpy-firmware)
 
