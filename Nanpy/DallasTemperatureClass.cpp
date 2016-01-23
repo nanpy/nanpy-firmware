@@ -80,9 +80,15 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
                 m->returns(1);
                 return;
             }
-            for( int cc = 0; cc < 7; cc++ )
-                addr_hex += String(addr[cc]) + " ";
-            addr_hex += String(addr[7]);
+   
+            char stmp[3];
+            for( int cc = 0; cc < 8; cc++ )
+            {
+                sprintf(stmp, "%02X", addr[cc]);
+                addr_hex.concat( stmp );
+                if (cc < 7)
+                    addr_hex.concat( "." );
+            }
             m->returns(addr_hex);
         }
 
