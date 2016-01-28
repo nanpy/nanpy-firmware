@@ -38,5 +38,15 @@ void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
             v[m->getObjectId()]->setCursor(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
+
+        if (strcmp(m->getName(), "autoscroll") == 0) {
+            v[m->getObjectId()]->autoscroll();
+            m->returns(0);
+        }
+
+        if (strcmp(m->getName(), "noAutoscroll") == 0) {
+            v[m->getObjectId()]->noAutoscroll();
+            m->returns(0);
+        }
 };
 #endif
