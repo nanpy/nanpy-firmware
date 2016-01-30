@@ -16,9 +16,9 @@ const char* nanpy::LiquidCrystalClass::get_firmware_id()
 void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<LiquidCrystal>::elaborate(m);
 
-        if (strcmp(m->getName(), "new") == 0) {       
+        if (strcmp(m->getName(), "new") == 0) {
             int prm = 0;
-            v.insert(new LiquidCrystal (m->getInt(prm++), m->getInt(prm++), 
+            v.insert(new LiquidCrystal (m->getInt(prm++), m->getInt(prm++),
                             m->getInt(prm++), m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
             v[m->getObjectId()]->begin(m->getInt(prm++), m->getInt(prm++));
             m->returns(v.getLastIndex());
