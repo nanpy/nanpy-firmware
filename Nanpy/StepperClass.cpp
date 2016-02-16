@@ -17,7 +17,11 @@ void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;
-            v.insert(new Stepper (m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
+            if (m->getNArgs() == 3) {
+                v.insert(new Stepper (m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
+            } else {
+                v.insert(new Stepper (m->getInt(prm++), m->getInt(prm++), m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
+            } 
             m->returns(v.getLastIndex());
         }
 
@@ -34,4 +38,3 @@ void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
 
 
 #endif
-
