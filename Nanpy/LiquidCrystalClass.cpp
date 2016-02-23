@@ -53,5 +53,19 @@ void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
             v[m->getObjectId()]->clear();
             m->returns(0);
         }
+
+        if (strcmp(m->getName(), "createChar") == 0) {
+            byte chr[8];
+            for(int i = 0; i < 8; i++) {
+                chr[i] = m->getByte(i+1);
+            }
+            v[m->getObjectId()]->createChar(m->getByte(0), chr);
+            m->returns(0);
+        }
+
+        if (strcmp(m->getName(), "write") == 0) {
+            v[m->getObjectId()]->write(m->getByte(0));
+            m->returns(0);
+        }
 };
 #endif
