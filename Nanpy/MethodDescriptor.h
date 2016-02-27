@@ -1,6 +1,7 @@
 #ifndef METHOD_DESCRIPTOR
 #define METHOD_DESCRIPTOR
 
+#include <Arduino.h>
 #include <WString.h>
 
 namespace nanpy {
@@ -22,6 +23,7 @@ namespace nanpy {
             int getObjectId();
             bool getBool(int n);
             int getInt(int n);
+            byte getByte(int n);
             float getFloat(int n);
             double getDouble(int n);
             char* getString(int n);

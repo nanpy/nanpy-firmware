@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "ComChannel.h"
-#include <Arduino.h>
 #include "consts.h"
 
 char** nanpy::MethodDescriptor::stack_pool = 0;
@@ -57,6 +56,10 @@ bool nanpy::MethodDescriptor::getBool(int n) {
 
 int nanpy::MethodDescriptor::getInt(int n) {
     return atoi(this->stack[n]);
+};
+
+byte nanpy::MethodDescriptor::getByte(int n) {
+    return byte(getInt(n));
 };
 
 float nanpy::MethodDescriptor::getFloat(int n) {
