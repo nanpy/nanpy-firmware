@@ -51,7 +51,7 @@ void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
             byte* addr = (byte*)malloc(m->getNArgs() * sizeof(byte));
             
             for(int i = 0 ; i < m->getNArgs() ; i++) {
-                addr[i] = (byte)m->getInt(i);
+                addr[i] = m->getByte(i);
             }
 
             v[m->getObjectId()]->select(addr);

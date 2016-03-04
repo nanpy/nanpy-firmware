@@ -40,7 +40,7 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
             } else if (m->getNArgs() > 1) {
                 byte addr[8];
                 for(int i = 0 ; i < m->getNArgs() ; i++) {
-                    addr[i] = (byte)m->getInt(i);
+                    addr[i] = m->getByte(i);
                 }
                 m->returns(v[m->getObjectId()]->requestTemperaturesByAddress(addr));
             } else {
@@ -55,7 +55,7 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
             } else {
                 byte addr[8];
                 for(int i = 0 ; i < m->getNArgs() ; i++) {
-                    addr[i] = (byte)m->getInt(i);
+                    addr[i] = m->getByte(i);
                 }
                 m->returns(v[m->getObjectId()]->getTempC(addr));
             }
@@ -67,7 +67,7 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
             } else {
                 byte addr[8];
                 for(int i = 0 ; i < m->getNArgs() ; i++) {
-                    addr[i] = (byte)m->getInt(i);
+                    addr[i] = m->getByte(i);
                 }
                 m->returns(v[m->getObjectId()]->getTempF(addr));
             }
