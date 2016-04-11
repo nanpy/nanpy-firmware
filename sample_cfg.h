@@ -38,9 +38,17 @@
 // frequency counter,  USE_Tone should be off!
 #define USE_Counter                                 0
 
+///////////////////////////////////////////////////////////////////////
 // external libraries should be installed for the following features:
+///////////////////////////////////////////////////////////////////////
+
+// https://github.com/PaulStoffregen/OneWire
 #define USE_OneWire                                 0
+
+// https://github.com/milesburton/Arduino-Temperature-Control-Library
 #define USE_DallasTemperature                       0
+
+
 #define USE_CapacitiveSensor                        0
 
 // https://github.com/adafruit/DHT-sensor-library
