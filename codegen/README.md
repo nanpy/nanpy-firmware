@@ -45,3 +45,22 @@ Example:
 	#else
 		MISSING(DDRB)
 	#endif
+
+
+intdefs
+-------
+
+Generating int defines list:
+
+running from project directory:
+
+    python codegen/intdefs.py
+
+input file:      intdefs.txt
+generated file:  firmware/Nanpy/generated_intdefs.h
+
+Example: 
+
+    #ifdef F_CPU
+        DEFINE(F_CPU)
+    #endif

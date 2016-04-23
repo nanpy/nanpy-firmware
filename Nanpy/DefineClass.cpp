@@ -12,7 +12,7 @@
 // example:
 // char string_A0[] PROGMEM = "A0";
 #define DEFINE(x)    const char string_##x[] PROGMEM = #x;
-#include "intdefs.h"
+#include "generated_intdefs.h"
 #undef DEFINE
 
 const char * const name_table[] PROGMEM =
@@ -20,7 +20,7 @@ const char * const name_table[] PROGMEM =
 // example:
 // string_A0,
 #define DEFINE(x)    string_##x,
-#include "intdefs.h"
+#include "generated_intdefs.h"
 #undef DEFINE
 };
 
@@ -29,11 +29,10 @@ const int32_t value_table[] PROGMEM =
 // example:
 // A0,
 #define DEFINE(x)    x,
-#include "intdefs.h"
+#include "generated_intdefs.h"
 #undef DEFINE
 };
 
-#define LONGEST_STRING_IN_INTDEFS_H  21
 
 #define COUNT_INT_DEFS  sizeof(name_table)/sizeof(name_table[0])
 
@@ -70,8 +69,7 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
             break;
 
         default:
-//            index -= COUNT_STR_DEFS;
-            char buffer[LONGEST_STRING_IN_INTDEFS_H];
+            char buffer[LONGEST_STRING_IN_INTDEFS_H+1];
             strcpy_P(buffer, (PGM_P) pgm_read_word(&(name_table[index])));
             m->returns(buffer);
         }
@@ -95,7 +93,6 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
             break;
 
         default:
-//            index -= COUNT_STR_DEFS;
             int32_t value = pgm_read_dword(&(value_table[index]));
             m->returns(value);
         }
