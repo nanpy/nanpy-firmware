@@ -1,8 +1,8 @@
-from path import path
+from path import Path
 
 
 def read_define(fname, name):
-    for line in path(fname).lines():
+    for line in Path(fname).lines():
         ls = line.split(name)
         if len(ls) > 1:
             if ls[0].strip().strip('#') == 'define':
@@ -46,7 +46,7 @@ class Codegen(object):
         valid = set()
         defs = set()
         print 'reading %s directory' % self.root
-        for h in path(self.root).walkfiles('*.h'):
+        for h in Path(self.root).walkfiles('*.h'):
             for x in h.lines():
                 x = x.replace('#', '').strip()
                 ls = x.split() + [''] * 4
@@ -114,9 +114,9 @@ class Codegen(object):
 
 
 def main():
-    firmware_path = path(__file__).abspath().parent.parent
-    nanpy_path = path(__file__).abspath().parent.parent / 'nanpy'
-    avr_include_path = path('/usr/lib/avr/include/avr/')
+    firmware_path = Path(__file__).abspath().parent.parent
+    nanpy_path = Path(__file__).abspath().parent.parent / 'nanpy'
+    avr_include_path = Path('/usr/lib/avr/include/avr/')
 
     x = Codegen(avr_include_path)
 
