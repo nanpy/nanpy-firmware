@@ -18,6 +18,7 @@
 // char string_A0[] PROGMEM = "A0";
 #define DEFINE(x)    const char string_##x[] PROGMEM = #x;
 #include "generated_intdefs.h"
+#include "intdefs.h"
 #undef DEFINE
 
 const char * const name_table[] PROGMEM =
@@ -26,6 +27,7 @@ const char * const name_table[] PROGMEM =
 // string_A0,
 #define DEFINE(x)    string_##x,
 #include "generated_intdefs.h"
+#include "intdefs.h"
 #undef DEFINE
 };
 
@@ -35,6 +37,7 @@ const int32_t value_table[] PROGMEM =
 // A0,
 #define DEFINE(x)    x,
 #include "generated_intdefs.h"
+#include "intdefs.h"
 #undef DEFINE
 };
 

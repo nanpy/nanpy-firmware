@@ -4,10 +4,6 @@
 #define LONGEST_STRING_IN_INTDEFS_H  20
 
 
-#ifdef A0
-    DEFINE(A0)
-#endif
-
 #ifdef NUM_DIGITAL_PINS
     DEFINE(NUM_DIGITAL_PINS)
 #endif
@@ -46,22 +42,6 @@
 
 #ifdef ARDUINO
     DEFINE(ARDUINO)
-#endif
-
-#ifdef SS
-    DEFINE(SS)
-#endif
-
-#ifdef MOSI
-    DEFINE(MOSI)
-#endif
-
-#ifdef MISO
-    DEFINE(MISO)
-#endif
-
-#ifdef SCK
-    DEFINE(SCK)
 #endif
 
 #ifdef __AVR_LIBC_DATE_
