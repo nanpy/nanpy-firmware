@@ -5,7 +5,12 @@
 #include <Arduino.h>
 #include "DefineClass.h"
 #include <stdlib.h>
+
 #include "generated_mcu.h"
+#ifndef MCU
+//  unknown MCU
+#  define MCU ""
+#endif
 
 // http://www.nongnu.org/avr-libc/user-manual/pgmspace.html
 
