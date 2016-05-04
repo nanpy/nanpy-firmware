@@ -12,16 +12,27 @@
 #  define MCU ""
 #endif
 
+#ifdef ARDUINO_ARCH_AVR
+#  define USE_PGM
+#endif
+
+#ifdef USE_PGM
+#  define MY_PROGMEM                             PROGMEM
+#else
+#  define MY_PROGMEM
+#endif
+
+
 // http://www.nongnu.org/avr-libc/user-manual/pgmspace.html
 
 // example:
 // char string_A0[] PROGMEM = "A0";
-#define DEFINE(x)    const char string_##x[] PROGMEM = #x;
+#define DEFINE(x)    const char string_##x[] MY_PROGMEM = #x;
 #include "generated_intdefs.h"
 #include "intdefs.h"
 #undef DEFINE
 
-const char * const name_table[] PROGMEM =
+const char * const name_table[] MY_PROGMEM =
 {
 // example:
 // string_A0,
@@ -31,7 +42,7 @@ const char * const name_table[] PROGMEM =
 #undef DEFINE
 };
 
-const int32_t value_table[] PROGMEM =
+const int32_t value_table[] MY_PROGMEM =
 {
 // example:
 // A0,
@@ -78,7 +89,11 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
 
         default:
             char buffer[LONGEST_STRING_IN_INTDEFS_H+1];
+#ifdef USE_PGM
             strcpy_P(buffer, (PGM_P) pgm_read_word(&(name_table[index])));
+#else
+            strcpy(buffer, name_table[index]);
+#endif
             m->returns(buffer);
         }
     }
@@ -101,7 +116,11 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
             break;
 
         default:
+#ifdef USE_PGM
             int32_t value = pgm_read_dword(&(value_table[index]));
+#else
+            int32_t value = value_table[index];
+#endif
             m->returns(value);
         }
     }

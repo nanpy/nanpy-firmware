@@ -24,11 +24,19 @@ void nanpy::RAMClass::elaborate( nanpy::MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "size") == 0) {
+#ifdef RAMEND
             m->returns(RAMEND+1);
+#else
+            m->returns(0);
+#endif
         }
 
         if (strcmp(m->getName(), "free") == 0) {
+#ifdef __AVR__
             m->returns(free_ram2());
+#else
+            m->returns(0);
+#endif
         }
 };
 

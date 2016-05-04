@@ -70,6 +70,7 @@
 #include "WireClass.h"
 
 #include "TLC5947Class.h"
+#include "EspClass.h"
 
 using namespace nanpy;
 
@@ -102,6 +103,8 @@ void setup() {
     
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
 
+    REGISTER_CLASS_CONDITIONAL(nanpy::EspClass, USE_ESP);
+    
     ComChannel::connect();
 }
 

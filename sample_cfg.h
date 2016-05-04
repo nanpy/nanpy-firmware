@@ -1,5 +1,15 @@
 #pragma once
 
+
+// only for ESP8266
+#define USE_WIFI_CONNECTION                         0
+
+// for WIFI connection
+#define WIFI_SSID 		"***"
+#define WIFI_PASSWORD 	"***"
+
+
+// for serial connection
 #define BAUDRATE 115200
 
 // info about existence of other features
