@@ -6,7 +6,7 @@ import logging
 from nose_ittr import IttrMultiplier, ittr
 import tempfile
 
-root = path(__file__).parent.parent
+root = path(__file__).abspath().parent.parent
 sample_cfg = root / 'sample_cfg.h'
 
 '''
@@ -47,7 +47,8 @@ def get_features():
             if parts[0] == '#define':
                 s = parts[1]
                 if s.startswith('USE'):
-                    ls.append(s)
+                    if not s.endswith('CONNECTION'):
+                        ls.append(s)
     assert len(ls) > 3
     print 'get_features:', ls
     return ls

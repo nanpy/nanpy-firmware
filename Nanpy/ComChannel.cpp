@@ -1,7 +1,7 @@
 #include "ComChannel.h"
 #include <Arduino.h>
 
-#ifdef USE_WIFI_CONNECTION
+#if USE_WIFI_CONNECTION
 
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
