@@ -1,5 +1,8 @@
 #include "cfg_all.h"
 
+#if USE_MCP41xxx
+#include <MCP41xxx.h>
+#endif
 
 #if USE_EEPROM
 #include <EEPROM.h>
@@ -45,6 +48,7 @@
 #include <Adafruit_TLC5947.h>
 #endif
 
+#include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
@@ -80,7 +84,8 @@ void setup() {
     disable_watchdog_at_startup();
    
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
-
+//
+    REGISTER_CLASS_CONDITIONAL(MCP41xxxClass, USE_MCP41xxx);
     REGISTER_CLASS_CONDITIONAL(nanpy::EEPROMClass, USE_EEPROM);                     // 0.3 k
     REGISTER_CLASS_CONDITIONAL(nanpy::RAMClass, USE_RAM);                           // 
     REGISTER_CLASS_CONDITIONAL(LiquidCrystalClass, USE_LiquidCrystal);              //  2.3 k
@@ -106,6 +111,12 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(nanpy::EspClass, USE_ESP);
     
     ComChannel::connect();
+    Serial1.begin(9600);
+    while (!Serial1)
+    { 
+      ;
+    }
+    Serial1.println("recieving");
 }
 
 void loop() {
