@@ -7,32 +7,22 @@
 #include "MCP41xxxClass.h"
 #include <stdlib.h>
 
-const char* nanpy::MCP41xxxClass::get_firmware_id()
-{
+const char* nanpy::MCP41xxxClass::get_firmware_id(){
     return "MCP41xxx";
 }
 
-
-void nanpy::MCP41xxxClass::elaborate( nanpy::MethodDescriptor* m ) 
-{
+void nanpy::MCP41xxxClass::elaborate( nanpy::MethodDescriptor* m ) {
     ObjectsManager<MCP41xxx>::elaborate(m);
 
-    if (strcmp(m->getName(),"new") == 0) 
-    {
+    if (strcmp(m->getName(),"new") == 0) {
         MCP41xxx* pot;
-        pot = new MCP41xxx (m->getInt(0), m->getInt(1));
+        pot = new MCP41xxx (m->getInt(0));
         pot->begin();
         v.insert(pot);
         m->returns(v.getLastIndex());
     }
-
-    if (strcmp(m->getName(), "begin") == 0) 
-    {
-        m->returns(v[m->getObjectId()]->begin(void));
-    }
-
-    if (strcmp(m->getName(), "analogWrite") == 0) 
-    {
+    
+    if (strcmp(m->getName(), "analogWrite") == 0) {
         m->returns(v[m->getObjectId()]->analogWrite(m->getInt(0), m->getInt(1)));
     }
 }

@@ -2,7 +2,6 @@
 
 #if USE_MCP41xxx
 #include <MCP41xxx.h>
-
 #endif
 
 #if USE_EEPROM
@@ -112,23 +111,11 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(nanpy::EspClass, USE_ESP);
     
     ComChannel::connect();
-    Serial1.begin(9600);
-    while (!Serial1)
-    { 
-      ;
-    }
-    Serial1.println("recieving");
 }
 
 void loop() {
-//    int serial1;
     if(ComChannel::available()) {
-//        serial1 = ComChannel;
-//        Serial1.println(serial1);
-        Serial1.print("1");
         m = new MethodDescriptor();
-        Serial1.print("2");
         Register::elaborate(m);
-        Serial1.print("3\n");
     }
 }
