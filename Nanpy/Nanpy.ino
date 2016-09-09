@@ -2,6 +2,7 @@
 
 #if USE_MCP41xxx
 #include <MCP41xxx.h>
+
 #endif
 
 #if USE_EEPROM
@@ -120,8 +121,14 @@ void setup() {
 }
 
 void loop() {
+//    int serial1;
     if(ComChannel::available()) {
+//        serial1 = ComChannel;
+//        Serial1.println(serial1);
+        Serial1.print("1");
         m = new MethodDescriptor();
+        Serial1.print("2");
         Register::elaborate(m);
+        Serial1.print("3\n");
     }
 }

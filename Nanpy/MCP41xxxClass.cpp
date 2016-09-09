@@ -13,27 +13,22 @@ const char* nanpy::MCP41xxxClass::get_firmware_id()
 }
 
 
-void nanpy::MCP41xxxClass::elaborate( MethodDescriptor* m ) 
+void nanpy::MCP41xxxClass::elaborate( nanpy::MethodDescriptor* m ) 
 {
     ObjectsManager<MCP41xxx>::elaborate(m);
 
     if (strcmp(m->getName(),"new") == 0) 
     {
         MCP41xxx* pot;
-        Serial1.println("f1")
-        pot = new MCP41xxx (m->getInt(0), m->getInt(1), m->getInt(2));
-        Serial1.println("f2")
+        pot = new MCP41xxx (m->getInt(0), m->getInt(1));
         pot->begin();
-        Serial1.println("f3")
         v.insert(pot);
-        Serial1.println("f4")
         m->returns(v.getLastIndex());
-        Serial1.println("f5")
     }
 
     if (strcmp(m->getName(), "begin") == 0) 
     {
-        m->returns(v[m->getObjectId()]->begin());
+        m->returns(v[m->getObjectId()]->begin(void));
     }
 
     if (strcmp(m->getName(), "analogWrite") == 0) 

@@ -16,6 +16,7 @@ void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "new") == 0) {      
             v.insert(new OneWire(m->getInt(0)));
+            Serial1.print(v.insert worked);
             m->returns(v.getLastIndex());
         }
 
