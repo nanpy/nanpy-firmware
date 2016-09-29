@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include <MCP41xxx.h>
 #include "MCP41xxxClass.h"
+#include "SPI.h"
 #include <stdlib.h>
 
 const char* nanpy::MCP41xxxClass::get_firmware_id(){
