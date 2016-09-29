@@ -19,7 +19,8 @@ EXTERNAL_LIBS = [
     'USE_DallasTemperature',
     'USE_CapacitiveSensor',
     'USE_DHT',
-    'USE_TLC5947'
+    'USE_TLC5947',
+    'USE_MCP41xxx'
 ]
 
 MCUs = [
