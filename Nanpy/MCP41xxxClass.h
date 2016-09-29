@@ -3,7 +3,6 @@
 
 #include "BaseClass.h"
 #include "MethodDescriptor.h"
-#include "SPI.h"
 
 class MCP41xxx;
 
