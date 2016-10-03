@@ -87,3 +87,8 @@
 #ifndef USE_TLC5947
 #  define USE_TLC5947 0
 #endif
+
+#ifndef USE_MCP41xxx
+#  define USE_MCP41xxx 0
+#endif
+

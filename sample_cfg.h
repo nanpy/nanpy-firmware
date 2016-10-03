@@ -70,4 +70,5 @@
 // https://www.adafruit.com/products/1429
 #define USE_TLC5947                                 0
 
+// ???
 #define USE_MCP41xxx                                0
