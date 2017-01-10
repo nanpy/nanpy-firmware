@@ -1,12 +1,12 @@
 from nose.tools import eq_, ok_
-from path import path
+from path import Path
 from pyavrutils.arduino import Arduino, ArduinoCompileError
 from pyavrutils.support import simple_targets
 import logging
 from nose_ittr import IttrMultiplier, ittr
 import tempfile
 
-root = path(__file__).abspath().parent.parent
+root = Path(__file__).abspath().parent.parent
 sample_cfg = root / 'sample_cfg.h'
 
 '''
@@ -36,7 +36,7 @@ MCUs = [
 
 def tmpdir(dir=None, suffix=''):
     x = tempfile.mkdtemp(suffix=suffix, prefix='nanpy_', dir=dir)
-    return path(x)
+    return Path(x)
 
 
 def get_features():
