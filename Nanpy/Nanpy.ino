@@ -48,6 +48,10 @@
 #include <Adafruit_TLC5947.h>
 #endif
 
+#if USE_Ultrasonic
+#include "UltrasonicClass.h"
+#endif
+
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -109,6 +113,8 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
 
     REGISTER_CLASS_CONDITIONAL(nanpy::EspClass, USE_ESP);
+	
+	REGISTER_CLASS_CONDITIONAL(UltrasonicClass, USE_Ultrasonic);
     
     ComChannel::connect();
 }

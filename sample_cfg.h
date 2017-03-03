@@ -41,12 +41,15 @@
 // I2C
 #define USE_Wire                                    0
 
-#define USE_Servo                                   0
+#define USE_Servo                                   1
 
-#define USE_Stepper                                 0
+#define USE_Stepper                                 1
 
 // frequency counter,  USE_Tone should be off!
 #define USE_Counter                                 0
+
+// GW Robotics Classes
+#define USE_Ultrasonic								1
 
 ///////////////////////////////////////////////////////////////////////
 // external libraries should be installed for the following features:
