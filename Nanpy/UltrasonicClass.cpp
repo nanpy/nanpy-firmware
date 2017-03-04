@@ -19,8 +19,4 @@ void nanpy::UltrasonicClass::elaborate( MethodDescriptor* m ) {
 	if (strcmp(m->getName(), "get_distance") == 0) {
 		m->returns(v[m->getObjectId()]->getDistance());
 	}
-	
-	if (strcmp(m->getName(), "reading_in_range") == 0) {
-		m->returns(v[m->getObjectId()]->readingInRange(m->getInt(0), m->getInt(1)));
-	}
 }

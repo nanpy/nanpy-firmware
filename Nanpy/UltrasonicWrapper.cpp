@@ -44,9 +44,4 @@ float nanpy::UltrasonicWrapper::getDistance() {
 	return distance;	
 }
 
-bool nanpy::UltrasonicWrapper::readingInRange(float low, float high) {
-	float reading = getDistance();
-	return reading > low && reading < high;
-}
-
 #endif
