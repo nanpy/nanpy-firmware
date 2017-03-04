@@ -11,7 +11,7 @@ namespace nanpy {
 	class UltrasonicClass: public ObjectsManager<UltrasonicWrapper> {
 		
 		public:
-			void elaborate { nanpy::MethodDescriptor* m };
+			void elaborate( nanpy::MethodDescriptor* m );
 			const char* get_firmware_id();
 	};
 }

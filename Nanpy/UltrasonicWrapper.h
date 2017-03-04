@@ -8,7 +8,7 @@ namespace nanpy {
 			
 		public:
 			UltrasonicWrapper(int echoPin, int trigPin, bool useInchesParam);
-			int getDistance();
-			int readInRange(int low, int high);
-	}
+			float getDistance();
+			bool readInRange(float low, float high);
+	};
 }

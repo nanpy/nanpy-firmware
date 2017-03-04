@@ -1,3 +1,13 @@
+#include "cfg.h"
+
+#include <Arduino.h>
+#include "UltrasonicClass.h"
+#include <stdlib.h>
+
+const char* nanpy::UltrasonicClass::get_firmware_id() {
+  return "Ultrasonic";
+}
+
 void nanpy::UltrasonicClass::elaborate( MethodDescriptor* m ) {
 	ObjectsManager<UltrasonicWrapper>::elaborate(m);
 	

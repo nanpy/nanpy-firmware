@@ -5,19 +5,25 @@
 #include "UltrasonicWrapper.h"
 #include <Arduino.h>
 
-nanpy::UltrasonicWrapper(int echoPin, int trigPin, bool useInchesParam)
-	: echo(echoPin), trig(trigPin) useInches(useInchesParam) {
+nanpy::UltrasonicWrapper::UltrasonicWrapper(int echoPin, int trigPin, bool useInchesParam) {
+    echo = echoPin;
+    trig = trigPin;
+    useInches = useInchesParam;
+    
 		pinMode(echo, INPUT);
 		pinMode(trig, OUTPUT);
 	}
 
 float nanpy::UltrasonicWrapper::getDistance() {
 	// Code goes here for getDistance()
-	digitalWrite(trigger, LOW);
+  int duration;
+  float distance;
+ 
+	digitalWrite(trig, LOW);
 	delayMicroseconds(2);
-	digitalWrite(trigger, HIGH);
+	digitalWrite(trig, HIGH);
 	delayMicroseconds(10);
-	digitalWrite(trigger, LOW);
+	digitalWrite(trig, LOW);
 
 	// Get the echo pulse that will last the time between the ultrasound signal has been emited and its echo has been received.
 	duration = pulseIn(echo, HIGH);
@@ -38,7 +44,9 @@ float nanpy::UltrasonicWrapper::getDistance() {
 	return distance;	
 }
 
-bool nanpy::UltrasonicWrapper::readInRange() {
-	reading = getDistance();
+bool nanpy::UltrasonicWrapper::readInRange(float low, float high) {
+	float reading = getDistance();
 	return reading > low && reading < high;
 }
+
+#endif
