@@ -1,4 +1,4 @@
-#include "cfg.h"
+ing#include "cfg.h"
 
 #include <Arduino.h>
 #include "UltrasonicClass.h"
@@ -20,7 +20,7 @@ void nanpy::UltrasonicClass::elaborate( MethodDescriptor* m ) {
 		m->returns(v[m->getObjectId()]->getDistance());
 	}
 	
-	if (strcmp(m->getName(), "read_in_range") == 0) {
-		m->returns(v[m->getObjectId()]->readInRange(m->getInt(0), m->getInt(1)));
+	if (strcmp(m->getName(), "reading_in_range") == 0) {
+		m->returns(v[m->getObjectId()]->readingInRange(m->getInt(0), m->getInt(1)));
 	}
 }
