@@ -52,6 +52,10 @@
 #include "UltrasonicClass.h"
 #endif
 
+#if USE_ColorSensor
+#include <ColorSensorClass.h>
+#endif
+
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -113,8 +117,10 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
 
     REGISTER_CLASS_CONDITIONAL(nanpy::EspClass, USE_ESP);
-	
-	REGISTER_CLASS_CONDITIONAL(UltrasonicClass, USE_Ultrasonic);
+
+    // GW Classes
+    REGISTER_CLASS_CONDITIONAL(UltrasonicClass, USE_Ultrasonic);
+    REGISTER_CLASS_CONDITIONAL(ColorSensorClass, USE_ColorSensor);
     
     ComChannel::connect();
 }

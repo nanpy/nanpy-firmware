@@ -49,7 +49,8 @@
 #define USE_Counter                                 0
 
 // GW Robotics Classes
-#define USE_Ultrasonic								1
+#define USE_Ultrasonic				    1
+#define USE_ColorSensor                             1
 
 ///////////////////////////////////////////////////////////////////////
 // external libraries should be installed for the following features:
