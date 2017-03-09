@@ -16,7 +16,7 @@ nanpy::ColorSensorWrapper::ColorSensorWrapper(int s0Pin, int s1Pin, int s2Pin, i
   pinMode(s1, OUTPUT);
   pinMode(s2, OUTPUT);
   pinMode(s3, OUTPUT);
-  pinmode(sensorOut, INPUT);
+  pinMode(sensorOut, INPUT);
 
   digitalWrite(s0, HIGH);
   digitalWrite(s1, LOW);
@@ -26,7 +26,7 @@ int nanpy::ColorSensorWrapper::getColor(char color) {
   if (color == 'r') {
     digitalWrite(s2, HIGH);
     digitalWrite(s3, LOW);
-  else if (color == 'g') {
+  } else if (color == 'g') {
     digitalWrite(s2, HIGH);
     digitalWrite(s3, HIGH);
   } else if (color == 'b') {
@@ -34,5 +34,7 @@ int nanpy::ColorSensorWrapper::getColor(char color) {
     digitalWrite(s3, HIGH);
   }
 
-    return pulseIn(sensorOut, LOW);
+  return pulseIn(sensorOut, LOW);
 }
+
+#endif

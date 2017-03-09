@@ -53,7 +53,7 @@
 #endif
 
 #if USE_ColorSensor
-#include <ColorSensorClass.h>
+#include "ColorSensorClass.h"
 #endif
 
 #include "MCP41xxxClass.h"
