@@ -5,10 +5,15 @@
 #include "UltrasonicWrapper.h"
 #include <Arduino.h>
 
-nanpy::UltrasonicWrapper::UltrasonicWrapper(int echoPin, int trigPin, bool useInchesParam) {
+nanpy::UltrasonicWrapper::UltrasonicWrapper(int echoPin, int trigPin, bool useInches) {
     echo = echoPin;
     trig = trigPin;
-    useInches = useInchesParam;
+    
+    if (useInches) {
+      conversionFactor = 74;
+    } else {
+      conversionFactor = 29;
+    }
     
 		pinMode(echo, INPUT);
 		pinMode(trig, OUTPUT);
@@ -35,11 +40,7 @@ float nanpy::UltrasonicWrapper::getDistance() {
 	// we can express the same formula as: 
 	// distance (in centimeters) = duration (in microseconds) / 29 / 2 that is much simpler and faster to compute.
 	
-	if (useInches) {
-		// TODO: Convert equation to inches
-	} else {
-		distance = duration / 29 / 2;
-	}
+	distance = duration / conversionFactor / 2;
 	
 	return distance;	
 }
