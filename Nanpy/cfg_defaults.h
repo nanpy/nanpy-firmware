@@ -92,3 +92,10 @@
 #  define USE_MCP41xxx 0
 #endif
 
+#ifndef USE_Ultrasonic
+#  define USE_Ultrasonic 0
+#endif
+
+#ifndef USE_ColorSensor
+#  define USE_ColorSensor 0
+#endif
