@@ -17,6 +17,7 @@ void nanpy::ColorSensorClass::elaborate( MethodDescriptor* m ) {
   }
 
   if (strcmp(m->getName(), "get_color") == 0) {
-    m->returns(v[m->getObjectId()]->getColor((char)m->getString(0)));
+      char* p = m->getString(0);
+    m->returns(v[m->getObjectId()]->getColor(*p));
   }
 }
