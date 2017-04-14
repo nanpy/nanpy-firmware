@@ -1,5 +1,8 @@
 #include "cfg_all.h"
 
+// external libraries should be put inside #if ... #endif
+//    internal headers not.
+
 #if USE_MCP41xxx
 #include <MCP41xxx.h>
 #endif
@@ -48,13 +51,6 @@
 #include <Adafruit_TLC5947.h>
 #endif
 
-#if USE_Ultrasonic
-#include "UltrasonicClass.h"
-#endif
-
-#if USE_ColorSensor
-#include "ColorSensorClass.h"
-#endif
 
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
@@ -83,6 +79,8 @@
 
 #include "TLC5947Class.h"
 #include "EspClass.h"
+#include "UltrasonicClass.h"
+#include "ColorSensorClass.h"
 
 using namespace nanpy;
 

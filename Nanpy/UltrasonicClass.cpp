@@ -1,4 +1,4 @@
-#include "cfg.h"
+#include "cfg_all.h"
 
 #include <Arduino.h>
 #include "UltrasonicClass.h"
