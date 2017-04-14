@@ -11,7 +11,7 @@ const char* nanpy::ColorSensorClass::get_firmware_id() {
 void nanpy::ColorSensorClass::elaborate( MethodDescriptor* m ) {
   ObjectsManager<ColorSensorWrapper>::elaborate(m);
 
-  if (strcmp(m->getName(), 'new') == 0) {
+  if (strcmp(m->getName(), "new") == 0) {
     v.insert(new ColorSensorWrapper(m->getInt(0), m->getInt(1), m->getInt(2), m->getInt(3), m->getInt(4)));
     m->returns(v.getLastIndex());
   }
