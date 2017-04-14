@@ -41,9 +41,9 @@
 // I2C
 #define USE_Wire                                    0
 
-#define USE_Servo                                   1
+#define USE_Servo                                   0
 
-#define USE_Stepper                                 1
+#define USE_Stepper                                 0
 
 // frequency counter,  USE_Tone should be off!
 #define USE_Counter                                 0
