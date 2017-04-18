@@ -56,23 +56,31 @@
 // external libraries should be installed for the following features:
 ///////////////////////////////////////////////////////////////////////
 
+// install with Library Manager: "OneWire"
 // https://github.com/PaulStoffregen/OneWire
 #define USE_OneWire                                 0
 
+// install with Library Manager: "DallasTemperature"
 // https://github.com/milesburton/Arduino-Temperature-Control-Library
 #define USE_DallasTemperature                       0
 
 
+// install with Library Manager: "CapacitiveSensor"
+// https://github.com/PaulStoffregen/CapacitiveSensor
 #define USE_CapacitiveSensor                        0
 
+// install with Library Manager: "DHT sensor library","Adafruit Unified Sensor"
 // https://github.com/adafruit/DHT-sensor-library
 #define USE_DHT                                     0
 
 // https://bitbucket.org/fmalpartida/new-liquidcrystal
 #define USE_LiquidCrystal_I2C                       0
 
-// https://www.adafruit.com/products/1429
+// install with Library Manager: "Adafruit TLC5947"
+// https://github.com/adafruit/Adafruit_TLC5947
 #define USE_TLC5947                                 0
 
-// ???
+// install with Library Manager: "MCP41XXX"
+//     latest version is bad (1.0.3), it should be installed manually
+// https://github.com/ArduinoMax/MCP41xxx
 #define USE_MCP41xxx                                0
