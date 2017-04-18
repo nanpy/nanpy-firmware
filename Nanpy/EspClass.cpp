@@ -10,7 +10,7 @@ const char* nanpy::EspClass::get_firmware_id()
     return "Esp";
 }
 
--//https://github.com/esp8266/Arduino/blob/master/cores/esp8266/Esp.cpp
+//https://github.com/esp8266/Arduino/blob/master/cores/esp8266/Esp.cpp
 void nanpy::EspClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getName(), "wdtEnable") == 0) {
     	ESP.wdtEnable(100);
