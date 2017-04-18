@@ -56,8 +56,6 @@ def get_features():
 
 FEATURES = [f for f in get_features() if f not in EXTERNAL_LIBS]
 
-ZERO_CFG = '\n'.join(['#define %s 0' % x for x in FEATURES])
-
 
 def test_config():
     known_mcus = [t.mcu for t in simple_targets()]
@@ -75,10 +73,7 @@ class TestFoo(object):
         try:
 
             f = self.feature
-            scfg = ZERO_CFG + '''
-            #undef %s
-            #define %s  1
-            ''' % (f, f)
+            scfg = '#define %s  1' % f
 
             (root / 'Nanpy').copytree(tdir / 'Nanpy')
             ino = tdir / 'Nanpy' / 'Nanpy.ino'
