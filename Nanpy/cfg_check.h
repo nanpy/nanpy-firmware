@@ -3,8 +3,8 @@
 // check configuration for compatibility
 
 #ifndef ARDUINO_ARCH_AVR
-// disable Due incompatible features
-//#define USE_ArduinoCore                             0
+// disable AVR only features
+#define USE_ArduinoCore                             0
 //#define USE_RAM                                     0
 #define USE_EEPROM                                  0
 #define USE_Register                                0
@@ -12,6 +12,7 @@
 #define USE_Counter                                 0
 #define USE_DHT                                     0
 #define USE_LiquidCrystal_I2C                       0
+#define USE_LiquidCrystal                       	0
 #endif
 
 // check configuration for problems
@@ -33,3 +34,5 @@
 #ifndef ESP8266
 #  define USE_WIFI_CONNECTION                      0
 #endif
+
+
