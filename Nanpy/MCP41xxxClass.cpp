@@ -22,9 +22,10 @@ void nanpy::MCP41xxxClass::elaborate( nanpy::MethodDescriptor* m ) {
         v.insert(pot);
         m->returns(v.getLastIndex());
     }
-    
+
     if (strcmp(m->getName(), "analogWrite") == 0) {
-        m->returns(v[m->getObjectId()]->analogWrite(m->getInt(0), m->getInt(1)));
+    	v[m->getObjectId()]->analogWrite(m->getInt(0), m->getInt(1));
+        m->returns(0);
     }
 }
 
