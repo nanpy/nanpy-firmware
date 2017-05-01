@@ -4,6 +4,10 @@
 
 // All these settings can be overwritten in cfg.h
 
+#ifndef COMM_SERIAL
+#  define COMM_SERIAL 				Serial
+#endif
+
 #ifndef USE_WIFI_CONNECTION
 #  define USE_WIFI_CONNECTION   0
 #endif

@@ -142,7 +142,7 @@ void readLineFromSerial(char* extbuff) {
     char ch = '0';
     char* buff = nanpy::ComChannel::read_buffer;
     do {
-        ch = Serial.read();
+        ch = COMM_SERIAL.read();
         if(ch < 255 && ch >= 0) {
             buff[i++] = ch;
         }
@@ -155,46 +155,46 @@ void readLineFromSerial(char* extbuff) {
 };
 
 bool nanpy::ComChannel::available() {
-    if (Serial.available() > 0)
+    if (COMM_SERIAL.available() > 0)
         return true;
     else
         return false;
 }
 
 void nanpy::ComChannel::connect() {
-    Serial.begin(BAUDRATE);
+    COMM_SERIAL.begin(BAUDRATE);
 }
 
 void nanpy::ComChannel::println(String& val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(const char* val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(int val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(unsigned int val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(float val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(double val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(long val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::println(unsigned long val) {
-    Serial.println(val);
+    COMM_SERIAL.println(val);
 }
 
 void nanpy::ComChannel::readLine(char* extbuff) {
