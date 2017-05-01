@@ -30,6 +30,8 @@ namespace nanpy {
             char* getName();
             void returns(String& val);
             void returns(const char* val);
+            void returns(char val);
+            void returns(unsigned char val);
             void returns(int val);
             void returns(unsigned int val);
             void returns(float val);
