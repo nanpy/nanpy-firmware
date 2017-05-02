@@ -94,6 +94,14 @@ void nanpy::MethodDescriptor::returns(const char* val) {
     ComChannel::println(val);
 }
 
+void nanpy::MethodDescriptor::returns(char val) {
+    ComChannel::println(val);
+}
+
+void nanpy::MethodDescriptor::returns(unsigned char val) {
+    ComChannel::println(val);
+}
+
 void nanpy::MethodDescriptor::returns(int val) {
     ComChannel::println(val);
 }
