@@ -11,6 +11,7 @@
 
 // for serial connection
 #define BAUDRATE 115200
+#define COMM_SERIAL                                 Serial
 
 // info about existence of other features
 #define USE_Info                                    1
