@@ -82,6 +82,5 @@
 #define USE_TLC5947                                 0
 
 // install with Library Manager: "MCP41XXX"
-//     latest version is bad (1.0.3), it should be installed manually
 // https://github.com/ArduinoMax/MCP41xxx
 #define USE_MCP41xxx                                0
