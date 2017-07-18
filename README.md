@@ -1,6 +1,6 @@
 # Nanpy firmware v0.9.6
 
-[![Travis](http://img.shields.io/travis/nanpy/nanpy-firmware.svg)] (https://travis-ci.org/nanpy/nanpy-firmware)
+[![Travis-CI Status](https://travis-ci.org/nanpy/nanpy-firmware.svg?branch=master)](https://travis-ci.org/nanpy/nanpy-firmware)
 
 Firmware for Nanpy, a library to use your Arduino board with Python. Read more on Nanpy at https://github.com/nanpy
 
