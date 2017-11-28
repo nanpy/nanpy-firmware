@@ -7,6 +7,10 @@
 #include <MCP41xxx.h>
 #endif
 
+#if USE_MCP4725
+#include <Adafruit_MCP4725.h>
+#endif
+
 #if USE_EEPROM
 #include <EEPROM.h>
 #endif
@@ -51,7 +55,7 @@
 #include <Adafruit_TLC5947.h>
 #endif
 
-
+#include "MCP4725Class.h"
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -111,6 +115,7 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(InfoClass, USE_Info);                          // 
     REGISTER_CLASS_CONDITIONAL(DHTClass, USE_DHT);
     REGISTER_CLASS_CONDITIONAL(WireClass, USE_Wire);
+    REGISTER_CLASS_CONDITIONAL(MCP4725Class, USE_MCP4725);
     
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
 
