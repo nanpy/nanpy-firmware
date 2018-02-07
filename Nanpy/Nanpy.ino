@@ -92,6 +92,13 @@ using namespace nanpy;
 MethodDescriptor *m = NULL;
 
 void setup() {
+#if INIT_PINS
+    // Register the defined pins as output pins
+    for (int pinNumber = 0; pinNumber < initPinCount; pinNumber++) {
+        pinMode(initPins[pinNumber], OUTPUT);
+    }
+#endif
+    
     disable_watchdog_at_startup();
 
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
