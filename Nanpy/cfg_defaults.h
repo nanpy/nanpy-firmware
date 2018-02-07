@@ -103,3 +103,7 @@
 #ifndef USE_ColorSensor
 #  define USE_ColorSensor 		0
 #endif
+
+#ifndef INIT_PINS
+#  define INIT_PINS             0
+#endif
