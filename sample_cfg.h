@@ -89,6 +89,10 @@
 // https://github.com/adafruit/Adafruit_MCP4725
 #define USE_MCP4725                                 0
 
+// install with Library Manager: "Adafruit TMP007"
+// https://github.com/adafruit/Adafruit_TMP007_Library
+#define USE_TMP007                                  0
+
 // MEMS fiber switch
 #define USE_MEMS                                    0
 

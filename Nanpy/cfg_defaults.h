@@ -108,6 +108,10 @@
 #  define USE_MCP4725           0
 #endif
 
+#ifndef USE_TMP007
+#  define USE_TMP007            0
+#endif
+
 #ifndef USE_MEMS
 #  define USE_MEMS              0
 #endif

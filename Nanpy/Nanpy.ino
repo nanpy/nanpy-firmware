@@ -11,6 +11,10 @@
 #include <Adafruit_MCP4725.h>
 #endif
 
+#if USE_TMP007
+#include <Adafruit_TMP007.h>
+#endif
+
 #if USE_EEPROM
 #include <EEPROM.h>
 #endif
@@ -57,6 +61,7 @@
 
 #include "MemsClass.h"
 #include "MCP4725Class.h"
+#include "TMP007Class.h"
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -98,7 +103,7 @@ void setup() {
         pinMode(initPins[pinNumber], OUTPUT);
     }
 #endif
-    
+
     disable_watchdog_at_startup();
 
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
@@ -124,6 +129,7 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(DHTClass, USE_DHT);
     REGISTER_CLASS_CONDITIONAL(WireClass, USE_Wire);
     REGISTER_CLASS_CONDITIONAL(MCP4725Class, USE_MCP4725);
+    REGISTER_CLASS_CONDITIONAL(TMP007Class, USE_TMP007);
     REGISTER_CLASS_CONDITIONAL(MemsClass, USE_MEMS);
 
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
