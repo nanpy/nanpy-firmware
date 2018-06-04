@@ -15,6 +15,10 @@
 #include <Adafruit_TMP007.h>
 #endif
 
+#if USE_BME280
+#include <Adafruit_BME280.h>
+#endif
+
 #if USE_EEPROM
 #include <EEPROM.h>
 #endif
@@ -62,6 +66,7 @@
 #include "MemsClass.h"
 #include "MCP4725Class.h"
 #include "TMP007Class.h"
+#include "BME280Class.h"
 #include "MCP41xxxClass.h"
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -130,6 +135,7 @@ void setup() {
     REGISTER_CLASS_CONDITIONAL(WireClass, USE_Wire);
     REGISTER_CLASS_CONDITIONAL(MCP4725Class, USE_MCP4725);
     REGISTER_CLASS_CONDITIONAL(TMP007Class, USE_TMP007);
+    REGISTER_CLASS_CONDITIONAL(BME280Class, USE_BME280);
     REGISTER_CLASS_CONDITIONAL(MemsClass, USE_MEMS);
 
     REGISTER_CLASS_CONDITIONAL(TLC5947Class, USE_TLC5947);
