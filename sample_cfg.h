@@ -84,3 +84,32 @@
 // install with Library Manager: "MCP41XXX"
 // https://github.com/ArduinoMax/MCP41xxx
 #define USE_MCP41xxx                                0
+
+// install with Library Manager: "Adafruit MCP4725"
+// https://github.com/adafruit/Adafruit_MCP4725
+#define USE_MCP4725                                 0
+
+// install with Library Manager: "Adafruit TMP007"
+// https://github.com/adafruit/Adafruit_TMP007_Library
+#define USE_TMP007                                  0
+
+// install with Library Manager: "Adafruit BME280 Library"
+// https://github.com/adafruit/Adafruit_BME280_Library
+// install with Library Manager: "Adafruit Unified Sensor"
+// https://github.com/adafruit/Adafruit_Sensor
+#define USE_BME280                                  0
+
+// MEMS fiber switch
+#define USE_MEMS                                    0
+
+// Initialize specified pins as output pins on startup
+#define INIT_PINS                                   0
+#if INIT_PINS
+// These pins will be initialized as output
+// This prevents the values from floating
+
+// Set this as the number of pins to initialize
+const int initPinCount = 0;
+// Initialize this array with the pin numbers to initialize
+const int initPins[] = {};
+#endif

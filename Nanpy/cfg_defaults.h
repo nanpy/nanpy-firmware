@@ -103,3 +103,23 @@
 #ifndef USE_ColorSensor
 #  define USE_ColorSensor 		0
 #endif
+
+#ifndef USE_MCP4725
+#  define USE_MCP4725           0
+#endif
+
+#ifndef USE_TMP007
+#  define USE_TMP007            0
+#endif
+
+#ifndef USE_BME280
+#  define USE_BME280            0
+#endif
+
+#ifndef USE_MEMS
+#  define USE_MEMS              0
+#endif
+
+#ifndef INIT_PINS
+#  define INIT_PINS             0
+#endif
