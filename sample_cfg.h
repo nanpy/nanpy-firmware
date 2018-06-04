@@ -93,6 +93,12 @@
 // https://github.com/adafruit/Adafruit_TMP007_Library
 #define USE_TMP007                                  0
 
+// install with Library Manager: "Adafruit BME280 Library"
+// https://github.com/adafruit/Adafruit_BME280_Library
+// install with Library Manager: "Adafruit Unified Sensor"
+// https://github.com/adafruit/Adafruit_Sensor
+#define USE_BME280                                  0
+
 // MEMS fiber switch
 #define USE_MEMS                                    0
 
