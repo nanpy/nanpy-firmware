@@ -15,7 +15,7 @@ const char* nanpy::ServoClass::get_firmware_id()
 void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<Servo>::elaborate(m);
 
-        if (strcmp(m->getName(),"new") == 0) {       
+        if (strcmp(m->getName(),"new") == 0) {
             v.insert(new Servo());
             v[v.getLastIndex()]->attach(m->getInt(0));
             m->returns(v.getLastIndex());
@@ -44,10 +44,14 @@ void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
             m->returns(0);
         }
 
+        if (strcmp(m->getName(), "attach") == 0) {
+            v[m->getObjectId()]->attach(m->getInt(0));
+            m->returns(0);
+        }
+
         if (strcmp(m->getName(), "attached") == 0) {
             m->returns(v[m->getObjectId()]->attached());
         }
 }
 
 #endif
-
