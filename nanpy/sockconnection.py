@@ -18,7 +18,11 @@ class SocketManager(object):
     def open(self):
         log.debug('opening:%s:%s', self.host, self.port)
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._socket.connect((self.host, self.port))
+        self._socket.settimeout(120)
+        try:
+            self._socket.connect((self.host, self.port))
+        except OSError:
+            raise SocketManagerError('Host not found!')
 
     def close(self):
         log.debug('closing:%s:%s', self.host, self.port)
@@ -37,6 +41,7 @@ class SocketManager(object):
             self.open()
         s = b''
         while 1:
+            self._socket.settimeout(120)
             c = self._socket.recv(1)
             log.debug('recv: %s', repr(c.decode()))
             if c.decode() == '\r':
