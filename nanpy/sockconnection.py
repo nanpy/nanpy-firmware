@@ -41,16 +41,19 @@ class SocketManager(object):
             self.open()
         s = b''
         while 1:
-            self._socket.settimeout(120)
-            c = self._socket.recv(1)
-            log.debug('recv: %s', repr(c.decode()))
-            if c.decode() == '\r':
-                continue
-            if c.decode() == '\n':
-                break
-            if c.decode() == '':
-                break
-            s += c
+            try:
+                self._socket.settimeout(120)
+                c = self._socket.recv(1)
+                log.debug('recv: %s', repr(c.decode()))
+                if c.decode() == '\r':
+                    continue
+                if c.decode() == '\n':
+                    break
+                if c.decode() == '':
+                    break
+                s += c
+            except socket.timeout:
+                raise SocketManagerError('Socket Timeout!')
 
         log.debug('received:%s', repr(s))
         s = s.decode()
