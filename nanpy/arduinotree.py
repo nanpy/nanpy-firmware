@@ -1,0 +1,155 @@
+from __future__ import division
+
+from nanpy.arduinoapi import ArduinoApi
+from nanpy.arduinocore import ArduinoCore
+from nanpy.arduinopin import PinFeature
+from nanpy.classinfo import ClassInfo, FirmwareMissingFeatureError
+from nanpy.counter import Counter
+from nanpy.define import DefineFeature
+from nanpy.eeprom import EEPROM
+from nanpy.fwinfo import firmware_info
+from nanpy.memo import memoized
+from nanpy.ram import RAM
+from nanpy.register import RegisterFeature
+from nanpy.serialmanager import serial_manager
+from nanpy.vcc import Vcc
+from nanpy.watchdog import Watchdog
+from nanpy.wire import Wire
+import time
+
+from nanpy.esp import Esp
+
+
+class ArduinoTree(object):
+
+    """Object tree model of an Arduino.
+
+    Examples:
+
+        a=ArduinoTree()
+        a.pin.get(9).read_digital_value()
+
+    """
+
+    def __init__(self, connection=None):
+        ''
+        self.connection = connection
+        if not connection:
+            self.connection = serial_manager
+        if not hasattr(self.connection, 'classinfo'):
+            self.connection.classinfo = ClassInfo(self.connection)
+
+    @property
+    @memoized
+    def api(self):
+        """Access to Arduino API."""
+        return ArduinoApi(self.connection)
+
+    @property
+    @memoized
+    def pin(self):
+        """Object-oriented representation of an Arduino pin"""
+#         if not self.register:
+#             return None
+#         if not self.define:
+#             return None
+#         if not self.core:
+#             return None
+#         if not self.ram:
+#             return None
+        return PinFeature(self.define, self.register, self.core, self.ram, self.api)
+
+    @property
+    @memoized
+    def define(self):
+        """Access to firmware constants."""
+        return DefineFeature(self.connection)
+
+    @property
+    @memoized
+    def register(self):
+        """Direct access to AVR registers."""
+        try:
+            return RegisterFeature(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
+
+    @property
+    @memoized
+    def watchdog(self):
+        """Direct access to watchdog timer."""
+        return Watchdog(self.connection)
+
+    @property
+    @memoized
+    def eeprom(self):
+        """Access to EEPROM."""
+        return EEPROM(self.connection)
+
+    @property
+    @memoized
+    def ram(self):
+        """Access to RAM."""
+        try:
+            return RAM(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
+
+    @property
+    @memoized
+    def counter(self):
+        """Access to counter."""
+        return Counter(self.connection, F_CPU=self.define.get('F_CPU'))
+
+    @property
+    @memoized
+    def core(self):
+        """Access to Arduino functions which are not part of the public API."""
+        try:
+            return ArduinoCore(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
+
+    @property
+    @memoized
+    def vcc(self):
+        """Access to VCC."""
+        if not self.register:
+            return None
+        if not self.define:
+            return None
+        return Vcc(self.register, MCU=self.define.get('MCU'))
+
+    def soft_reset(self):
+        """Resets the AVR, the registers will be reset to their known, default
+        settings.
+
+        Details: http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_softreset
+
+        """
+        self.watchdog.enable(self.watchdog.WDTO_60MS)
+        time.sleep(0.2)
+
+        # TODO: after restart the first read is not correct (why?)
+        # This command helps cleaning the read buffer
+        self.connection.flush_input()
+
+    @property
+    @memoized
+    def wire(self):
+        """Access to Wire."""
+        return Wire(self.connection)
+
+    @property
+    @memoized
+    def firmware_info(self):
+        """"""
+        return firmware_info(self.define.as_dict)
+
+    @property
+    @memoized
+    def esp(self):
+        try:
+            return Esp(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
