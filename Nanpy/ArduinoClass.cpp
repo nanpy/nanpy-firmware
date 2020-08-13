@@ -17,11 +17,12 @@ void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "r") == 0) {  // digitalRead
             m->returns(digitalRead(m->getInt(0)));
         }
-
+#ifndef ESP32
         if (strcmp(m->getName(), "aw") == 0) { // analogWrite
             analogWrite(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
+#endif
 
         if (strcmp(m->getName(), "a") == 0) {  // analogRead
             m->returns(analogRead(m->getInt(0)));

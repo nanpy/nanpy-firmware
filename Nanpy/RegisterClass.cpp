@@ -110,4 +110,3 @@ void nanpy::RegisterClass::elaborate(nanpy::MethodDescriptor* m)
 }
 
 #endif
-
