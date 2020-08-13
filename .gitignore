@@ -1,0 +1,29 @@
+#General
+.DS_Store
+*~
+*.swp
+build/
+
+#Arduino
+*.o
+*.hex
+*/.dep
+*/.lib
+
+#Configuration
+Nanpy/cfg.h
+makefile/
+
+#Internal dev
+Nanpy/arduino.mk
+Nanpy/Makefile
+Nanpy/libraries
+
+#Python
+*.pyc
+
+# ignore all hidden files...
+.*
+#                        ...except:
+!.git*
+!.travis*
