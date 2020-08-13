@@ -50,4 +50,3 @@ void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
 }
 
 #endif
-

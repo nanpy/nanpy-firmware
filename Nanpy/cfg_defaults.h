@@ -81,7 +81,7 @@
 #endif
 
 #ifndef USE_DHT
-#  define USE_DHT               0
+#  define USE_DHT               1
 #endif
 
 #ifndef USE_LiquidCrystal_I2C
