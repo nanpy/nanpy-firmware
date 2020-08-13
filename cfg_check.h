@@ -10,7 +10,7 @@
 #define USE_Register                                0
 #define USE_Watchdog                                0
 #define USE_Counter                                 0
-#define USE_DHT                                     1
+#define USE_DHT                                     0
 #define USE_LiquidCrystal_I2C                       0
 #define USE_LiquidCrystal                       	  0
 #endif
