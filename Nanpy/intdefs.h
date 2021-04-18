@@ -9,5 +9,3 @@ DEFINE(A0)
     DEFINE(MISO)
     DEFINE(SCK)
 #endif
-
-
