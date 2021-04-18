@@ -29,7 +29,11 @@ void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "pm") == 0) {  // pinMode
-            pinMode(m->getInt(0), m->getInt(1));
+            int _mode = m->getInt(1);
+            #ifdef ESP32
+              _mode++;
+            #endif
+            pinMode(m->getInt(0), _mode);
             m->returns(0);
         }
 
